@@ -15,34 +15,34 @@ ActiveRecord::Schema.define(version: 3) do
   create_table "appointments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "property_id"
-    t.string  "time"
-    t.string  "date"
+    t.string "time"
+    t.string "date"
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string  "address"
+    t.string "address"
     t.integer "zip"
     t.integer "cost"
     t.integer "monthly_cost"
     t.integer "year_built"
     t.boolean "availibity"
-    t.string  "amenities"
-    t.float   "proximity_to_subway"
+    t.string "amenities"
+    t.float "proximity_to_subway"
     t.integer "sqft"
     t.integer "days_on_market"
-    t.string  "description"
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
+    t.string "first_name"
+    t.string "last_name"
     t.integer "budget"
     t.integer "credit_score"
     t.integer "income"
     t.integer "days_searching"
     t.boolean "active"
-    t.string  "phone_number"
-    t.string  "email"
+    t.string "phone_number"
+    t.string "email"
   end
 
 end
