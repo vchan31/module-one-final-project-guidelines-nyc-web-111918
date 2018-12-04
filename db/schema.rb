@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 3) do
 
   create_table "properties", force: :cascade do |t|
     t.string  "address"
+    t.string  "type_of_property"
     t.integer "zip"
     t.integer "cost"
     t.integer "monthly_cost"
