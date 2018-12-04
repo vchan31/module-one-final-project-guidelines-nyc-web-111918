@@ -12,6 +12,14 @@ def fakedis
   ["Center of Everything", "Near Trains", "Quiet", "Oversized One Bed Room", "Pet Friendly" "Open Tap", "Fire Place", "Good Eats"].sample(2).join(" & ")
 end
 
+def random_zip_in_manhattan
+  [10026, 10027, 10030, 10037, 10039, 10001, 10011, 10018, 10019,
+   10020, 10036, 10029, 10035, 10010, 10016, 10017, 10022, 10012,
+    10013, 10014, 10004, 10005, 10006, 10007, 10038, 10280, 10002,
+     10003, 10009, 10021, 10028, 10044, 10065, 10075, 10128, 10023, 
+     10024, 10025,10031, 10032, 10033, 10034, 10040].sample
+  end
+
 
 User.find_or_create_by(
   {first_name: "Tony",
@@ -51,7 +59,7 @@ User.find_or_create_by (
 5.times do
   Property.create(
     address: "#{Faker::Address.street_address} #{Faker::Address.secondary_address}",
-    zip: Faker::Address.zip,
+    zip: random_zip_in_manhattan,
     cost: Faker::Number.between(500000, 4000000),
     monthly_cost: Faker::Number.between(500, 3000),
     year_built: Faker::Number.between(1950, 2018),
