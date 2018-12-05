@@ -13,11 +13,11 @@ quit = nil
 #Start program here
 puts "Welcome to Blue Jays Listings"
 puts "Would you like to \n
-[1] : User Login \n
-[2] : Public Search \n
-[0] : Quit\n"
+    [1] : User Login \n
+    [2] : Public Search \n
+    [0] : Quit\n"
 starts = get_user_input
-
+system("clear")
 if starts == "User Login" || starts == "1"
   puts "Please enter your first name, it is case sensitive."
   first_name = get_user_input
@@ -36,6 +36,7 @@ if starts == "User Login" || starts == "1"
     [4] : newest listing\n
     [5] : most popular\n
     [6] : my appointments\n
+    [7] : my info\n
     [0] : quit\n#{"~." * 40}"
     user_input = get_user_input
 
@@ -66,6 +67,9 @@ if starts == "User Login" || starts == "1"
     when "6", "my appointments"
       system("clear")
       puts user.my_appointments
+    when "7", "my info"
+      system("clear")
+      puts user.my_profile
     when "0", "quit", "exit"
       quit = true
       system("clear")
