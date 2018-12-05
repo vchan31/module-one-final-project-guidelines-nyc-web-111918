@@ -12,16 +12,20 @@ system("clear")
 quit = nil
 #Start program here
 puts "Welcome to Blue Jays Listings"
-puts "Would you like to \n[1] : User Login \n[2] : Public Search"
+puts "Would you like to \n
+[1] : User Login \n
+[2] : Public Search \n
+[0] : Quit\n"
 starts = get_user_input
 
 if starts == "User Login" || starts == "1"
   puts "Please enter your first name, it is case sensitive."
-  first = get_user_input
+  first_name = get_user_input
   puts "Please enter your last name, it is case sensitive"
-  last = get_user_input
-  user = User.find_by(:first_name == first,:last_name == last)
-  puts "Welcome #{first} #{last}"
+  last_name = get_user_input
+  user = User.find_by(first_name: first_name, last_name: last_name)
+
+  puts "Welcome #{first_name} #{last_name}"
   until quit
     puts "\n#{"~." * 40}\nPlease select what you would like to do. \nnote: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
 
@@ -31,6 +35,7 @@ if starts == "User Login" || starts == "1"
     [3] : search by zip \n
     [4] : newest listing\n
     [5] : most popular\n
+    [6] : my appointments\n
     [0] : quit\n#{"~." * 40}"
     user_input = get_user_input
 
@@ -58,6 +63,9 @@ if starts == "User Login" || starts == "1"
     when "5" , "most popular"
       system("clear")
       puts Appointment.most_popular
+    when "6", "my appointments"
+      system("clear")
+      puts user.my_appointments
     when "0", "quit", "exit"
       quit = true
       system("clear")
@@ -115,6 +123,8 @@ elsif starts == "Public Search" || starts == "2"
     end
 
   end # end of public search
+elsif starts == "Quit" || starts == "0"
+
 else
   puts "Invalid inputs"
 end #end of CLI program

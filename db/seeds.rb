@@ -87,26 +87,26 @@ Property.find_or_create_by(
 Appointment.find_or_create_by(
   {user_id: 1,
   property_id: 1,
-  date: "Thu, 06 Dec 2018",
+  date: "2018-12-06",
   time: "12:56:38"}
 )
 
 Appointment.find_or_create_by(
   {user_id: 2,
   property_id: 1,
-  date: "Tue, 18 Dec 2018",
+  date: "2018-12-12",
   time: "11:56:38"}
 )
 Appointment.find_or_create_by(
   {user_id: 3,
   property_id: 1,
-  date: "Tue, 18 Dec 2018",
+  date: "2018-12-18",
   time: "11:56:38"}
 )
 Appointment.find_or_create_by(
   {user_id: 3,
   property_id: 2,
-  date: "Tue, 25 Dec 2018",
+  date: "2018-12-25",
   time: "16:30:22"}
 )
 
