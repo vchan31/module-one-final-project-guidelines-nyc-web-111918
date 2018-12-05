@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :appointments
+  has_many :saves
   has_many :properties, through: :appointments
+  has_many :properties, through: :saves
 
   def my_appointments
     self.appointments.each_with_index.map do |app, index|
@@ -15,5 +17,13 @@ class User < ActiveRecord::Base
   def edit_my_profile
   end
 
+def save_property(address)
+property = Property.find_by(address: address) 
+Save.find_or_create_by(user_id: self.id, property_id: property.id)
+end
+
+def all_my_saves
+Save.all.where(user_id: self.id)
+end
 
 end

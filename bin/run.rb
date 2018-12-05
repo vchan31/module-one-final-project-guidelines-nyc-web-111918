@@ -1,4 +1,5 @@
 require_relative '../config/environment'
+a = User.find(1)
 
 def get_user_input
   gets.chomp.strip
