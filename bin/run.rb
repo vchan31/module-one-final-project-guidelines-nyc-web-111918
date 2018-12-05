@@ -8,9 +8,12 @@ system("clear")
 quit = nil
 puts "Welcome to !!!!!"
 
+def valid_zip?(zip)
+  zip.to_s.length == 5 && zip > 2
+end
+
 until quit
-  # system("clear")
-  puts "Please select what you would like to do"
+  puts "\nPlease select what you would like to do"
   puts "zip | quit"
   user_input = get_user_input
 
@@ -19,11 +22,16 @@ until quit
     system("clear")
     puts "please enter a zip code"
     zip = get_user_input.to_i
+    until valid_zip?(zip)
+      puts "plese put in a valid zip.\ne.g. 10011"
+      zip = get_user_input.to_i
+    end
+    system("clear")
     puts User.find_by_zip(zip)
   when "quit"
     quit = true
   else
-
+    system("clear")
     puts "invalid method, Try again"
   end
   # puts "Please select what you would like to do"
