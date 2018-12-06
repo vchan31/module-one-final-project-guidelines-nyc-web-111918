@@ -9,7 +9,7 @@ def ranamen
 end
 
 def fakedis
-  ["Center of Everything", "Near Trains", "Quiet", "Oversized One Bed Room", "Pet Friendly" "Open Tap", "Fire Place", "Good Eats"].sample(2).join(" & ")
+  ["Center of Everything", "Near Trains", "Quiet", "Oversized One Bed Room", "Pet Friendly", "Open Tap", "Fire Place", "Good Eats"].sample(2).join(" & ")
 end
 
 def random_zip_in_manhattan
