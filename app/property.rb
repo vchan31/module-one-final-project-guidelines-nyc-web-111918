@@ -5,7 +5,7 @@ class Property < ActiveRecord::Base
   has_many :users, through: :saves
 
   def human_output
-    "Address: #{address}\nAsking Price: $#{cost}\nMonthly: #{monthly_cost}\nDays on Market: #{days_on_market}\nAmenities: #{amenities}\nDescription: #{description}\n#{"~." * 40}"
+    "Address: #{address}\nAsking Price: $#{cost}\nMonthly: #{monthly_cost}\nDays on Market: #{days_on_market}\nAmenities: #{amenities}\nDescription: #{description}\n#{"~." * 60}"
   end
 
   def self.lowest_price
@@ -27,7 +27,10 @@ class Property < ActiveRecord::Base
 
   def self.find_by_zip(zipcode)
     all_found = self.all.where(zip: zipcode, availibity: true)
-    all_found.map {|pr| pr.human_output}
+    all_found.map do |pr|
+
+      pr.human_output
+    end
   end
 
   def self.new_listing

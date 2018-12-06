@@ -60,20 +60,25 @@ class User < ActiveRecord::Base
   # end
 
 def save_property(address)
-property = Property.find_by(address: address) 
-Save.find_or_create_by(user_id: self.id, property_id: property.id)
+  property = Property.find_by(address: address)
+
+  Save.find_or_create_by(user_id: self.id, property_id: property.id)
 
 puts "Your Property has been saved!"
 end
 
 def all_my_saves
- puts "Here are you saved items:" 
-saved_properties = Save.all.where(user_id: self.id)
-saved_properties.each_with_index.map do |app,index|
-
-
-puts "#{index+1}. Address: #{Property.find(app.property_id).address}"
+  puts "Here are your saved items:"
+  saved_properties = Save.all.where(user_id: self.id)
+  saved_properties.each_with_index.map do |app,index|
+    puts "#{index+1}. Address: #{Property.find(app.property_id).address}"
   end
 end
 
+
+def remove_property(address)
+  property = Property.find_by(address: address)
+  Save.find_by(user_id: self.id, property_id: property.id).destroy
 end
+
+end #end User class

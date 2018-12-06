@@ -1,9 +1,9 @@
 require_relative '../config/environment'
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 5b449e8b9f9cb3e47aa85ff74d1efe40ff0e8451
+# <<<<<<< HEAD
+#
+#
+# =======
+# >>>>>>> 5b449e8b9f9cb3e47aa85ff74d1efe40ff0e8451
 def get_user_input
   gets.chomp.strip
 end
@@ -33,6 +33,7 @@ starts = nil
 #Start program here
 until starts == "Quit" || starts == "0"
   logo
+  quit = nil
   puts "Welcome to Blue Jays Listings"
   puts "Would would you like to do? \n
       [1] : User Login \n
@@ -58,17 +59,12 @@ until starts == "Quit" || starts == "0"
 
     puts "Welcome back #{first_name.capitalize} #{last_name.capitalize}"
     until quit
-      puts "\n#{"~." * 40}\nPlease select what you would like to do. \nnote: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
+      puts "\n#{"~." * 60}\nPlease select what you would like to do. \nnote: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
 
       puts "
-      [1] : highest priced listing \n
-      [2] : lowest priced listing \n
-      [3] : search by zip \n
-      [4] : newest listing\n
-      [5] : most popular\n
-      [6] : my appointments\n
-      [7] : my info\n
-      [0] : quit\n#{"~." * 40}"
+      [1] :highest priced listing   [2] :lowest priced listing    [3] :search by zip            [4] :newest listing\n
+      [5] :most popular             [6] :my appointments          [7] :my saves                 [8] :my info\n
+      [0] :logout\n#{"~." * 60}"
       user_input = get_user_input
 
       case user_input
@@ -89,6 +85,25 @@ until starts == "Quit" || starts == "0"
         system("clear")
         puts "~Here are the listings for #{zip}~\n "
         puts Property.find_by_zip(zip)
+        puts "Would you like to save a property?"
+        answer = get_user_input.downcase
+        until answer == "yes" || answer == "no"
+          puts"that input is invalid, please enter yes or no."
+          answer = get_user_input.downcase
+        end
+
+        if answer == "yes"
+          puts "Please enter the address with apt numer exactly as shown. you would like to save."
+          address = get_user_input
+
+          until Property.where(zip: zip).map {|pr| pr.address}.include?(address) || address == "quit"
+            puts "Input was invalid. You can try again or quit"
+            address = get_user_input
+          end
+          user.save_property(address) unless address == "quit"
+        else answer == "no"
+          system("clear")
+        end
       when "4", "newest listing"
         system("clear")
         puts Property.new_listing
@@ -96,12 +111,40 @@ until starts == "Quit" || starts == "0"
         system("clear")
         puts Appointment.most_popular
       when "6", "my appointments"
+          puts "Here are your saved appointments:"
         system("clear")
         puts user.my_appointments
-      when "7", "my info"
+      when "7", "my saves"
+        system("clear")
+        user.all_my_saves
+        puts "Would you like to remove any saves?"
+          save_response = get_user_input
+        until save_response == "yes" || save_response == "no"
+          puts "Thats invalid input, please try"
+          save_response = get_user_input
+        end
+
+        if save_response == "yes"
+          puts "Please input which property you'd like to remove from your save list"
+          # which house
+          pr_to_delete = get_user_input
+          # gets chomp
+          # check valid
+          until Property.where(address: pr_to_delete).map {|pr| pr.address}.include?(pr_to_delete) || pr_to_delete == "quit"
+            puts "Input was invalid. You can try again or quit"
+            pr_to_deletes = get_user_input
+          end
+          user.remove_property(pr_to_delete) unless pr_to_delete == "quit"
+          #when del run del method on saveed object
+            puts "#{pr_to_delete}, has been deleted from your saved items." unless pr_to_delete == "quit"
+        end
+
+
+
+      when "8", "my info"
         system("clear")
         puts user.my_profile
-      when "0", "quit", "exit"
+      when "0", "quit", "exit", "logout"
         quit = true
         system("clear")
       else
@@ -162,15 +205,12 @@ until starts == "Quit" || starts == "0"
   elsif starts == "3" || starts == "Public Search"
     leave = false
     until leave
-      puts "\n#{"~." * 40}\nPlease select what you would like to do. \nnote: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
+      puts "\n#{"~." * 60}\nPlease select what you would like to do. \nnote: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
 
       puts "
-      [1] : highest priced listing \n
-      [2] : lowest priced listing \n
-      [3] : search by zip \n
-      [4] : newest listing\n
-      [5] : most popular\n
-      [0] : quit\n#{"~." * 40}"
+      [1] :highest priced listing   [2] :lowest priced listing    [3] :search by zip\n
+      [4] :newest listing           [5] :most popular\n
+      [0] :quit\n#{"~." * 60}"
       user_input = get_user_input
 
       case user_input
