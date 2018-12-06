@@ -16,11 +16,11 @@ end
 def logo
   puts "         .-.                                              .-."
   puts "        (. .)__.')                                  (`.__(. .)"
-  puts "        / V      )                                  (      V \\"
+  puts "        / V      )        Blue Jays Listings        (      V \\"
   puts "  ()    \\  (   \\/                                    \\/   )  /    ()"
   puts "<)-`\\()  `._`._ \\                                    / _.'_.'  ()/'-(>"
   puts "  <)_>=====<<==`'====================================`'==>>=====<_(>"
-  puts " <>-'`(>                               Blue Jays Listings     <)'`-<>"
+  puts " <>-'`(>                                                      <)'`-<>"
   puts ""
 end
 
@@ -155,8 +155,7 @@ until starts == "Quit" || starts == "0"
     end # end of user search
   elsif starts == "2" || starts == "Make New User Account"
     #maker new user instance, and save only when user wants to.
-    puts "Glad you decided to join us 😈"
-    puts "Please enter your First Name, this will be apart of your login."
+    puts "Glad you decided to join us 🐦 🐦\n\nPlease enter your First Name, this will be apart of your login."
     new_first_name = get_user_input.capitalize
     puts "please enter your Last Name, this will be apart of your login as well."
     new_last_name = get_user_input.capitalize

@@ -5,7 +5,7 @@ class Property < ActiveRecord::Base
   has_many :users, through: :saves
 
   def human_output
-    "Address: #{address}\nAsking Price: $#{cost}\nMonthly: #{monthly_cost}\nDays on Market: #{days_on_market}\nAmenities: #{amenities}\nDescription: #{description}\n#{"~." * 60}"
+    "Address: #{address}\nAsking Price: $#{cost}   Monthly: #{monthly_cost}   Days on Market: #{days_on_market}\nAmenities: #{amenities}\nDescription: #{description}\n#{"~." * 60}"
   end
 
   def self.lowest_price

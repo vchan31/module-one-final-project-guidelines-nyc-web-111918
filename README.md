@@ -1,59 +1,39 @@
-# Module One Final Project Guidelines
+# Blue Jays Listings
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+We are Vincent Chan and Tony Lum, and this is Blue Jays Listings! Blue Jay Listings is a command line interface data extrapolating App. Users can retrieve information from our database regarding real estate listings for sale; finding listings information including, but not limited to: highest priced listings, listings by a zip code and all listings they choose to save. Currently our app is using the Faker gem to seed all the data for our listings database; but it can potentially be connected to a live database of real estate listing.
 
-For your final project, we'll be building a Command Line database application.
+## Getting Started
 
-## Project Requirements
+Please follow the instructions below to get our App running properly.
 
-### Option One - Data Analytics Project
+### Installing
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+1. After cloning and forking the repository from github, please install all the necessary gems files with the command "bundle install"
+2. Afterwards, please run "rake db:migrate" to create the necessary tables for the database.
+3. Run "rake db:seed" to seed all the data into your database.
+4. to run the App, enter "ruby bin.run.rb" when you are in the root directory of the App file.
 
-  **Resource:** [Easy Access APIs](https://github.com/learn-co-curriculum/easy-access-apis)
 
-### Option Two - Command Line CRUD App
+### Built with
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
+1. Sqlite3 Database
+2. sinatra - ActiveRecord
+3. Faker gem
+4. Pry
+5. Require_all
 
-### Brainstorming and Proposing a Project Idea
+### Contributing
 
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
 
-## Instructions
 
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project.(2 minutes max)
-6. Prepare a presentation to follow your video.(3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address, if anything, what you would change or add to what you have today?
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
+### Authors
+Tony Lum
 
----
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
-```
+Vincent Chan
+
+
+
+### Acknowledgements:
+- Thanks for trying out our code!

@@ -4,8 +4,6 @@ def change
 	create_table :saves do |t|
 		t.integer :user_id
 		t.integer :property_id
-		
-
 	end
 end
 
