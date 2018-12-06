@@ -106,57 +106,53 @@ until starts == "Quit" || starts == "0"
 
     end # end of user search
   elsif starts == "2" || starts == "Make New User Account"
-    made = nil
-    until made
-      puts "Glad you decided to join us 😈"
-      puts "Please enter your First Name, this will be apart of your login."
-      new_first_name = get_user_input.capitalize
-      puts "please enter your Last Name, this will be apart of your login as well."
-      new_last_name = get_user_input.capitalize
-      puts "What is your Budget?, press enter to leave blank"
-      new_budget = get_user_input.to_i
-      puts "What is your Credit Score?. hit return to leave blank"
-      new_credit_score = get_user_input.to_i
-      puts "What is your Income?, hit return to leave blank"
-      new_income = get_user_input.to_i
-      puts "What is your Phone number? please enter without special characters. \ne.g. 1112223333"
-      new_phone_number = get_user_input
-      #make check statment to match wiht DB by email so we cannot make an account with the same email address.
-      puts "What is your email?"
-      new_email = get_user_input
+    #maker new user instance, and save only when user wants to.
+    puts "Glad you decided to join us 😈"
+    puts "Please enter your First Name, this will be apart of your login."
+    new_first_name = get_user_input.capitalize
+    puts "please enter your Last Name, this will be apart of your login as well."
+    new_last_name = get_user_input.capitalize
+    puts "What is your Budget?, press enter to leave blank"
+    new_budget = get_user_input.to_i
+    puts "What is your Credit Score?. hit return to leave blank"
+    new_credit_score = get_user_input.to_i
+    puts "What is your Income?, hit return to leave blank"
+    new_income = get_user_input.to_i
+    puts "What is your Phone number? please enter without special characters. \ne.g. 1112223333"
+    new_phone_number = get_user_input
+    #make check statment to match wiht DB by email so we cannot make an account with the same email address.
+    puts "What is your email?"
+    new_email = get_user_input
 
-      system("clear")
-      puts "First Name:   #{new_first_name} \nLast Name:    #{new_last_name} \nBudget:       #{new_budget} \nCredit Score: #{new_credit_score} \nIncome:       #{new_income} \nPhone Number: #{new_phone_number} \nEmail:        #{new_email}"
+    system("clear")
+    puts "First Name:   #{new_first_name} \nLast Name:    #{new_last_name} \nBudget:       #{new_budget} \nCredit Score: #{new_credit_score} \nIncome:       #{new_income} \nPhone Number: #{new_phone_number} \nEmail:        #{new_email}"
 
-      puts "Is the above information correct? \nPlease enter Yes or No. \nIf you enter no, all the information will be lost"
+    puts "Is the above information correct? \nPlease enter Yes or No. \nIf you enter no, all the information will be lost"
+    answer = get_user_input.downcase
+
+    until answer == "yes" || answer == "no"
+      puts "Thats invalid input, please try"
       answer = get_user_input.downcase
+    end
 
-      until answer == "yes" || answer == "no"
-        puts "Thats invalid input, please try"
-        answer = get_user_input.downcase
-      end
-
-      if answer == "yes"
-        User.find_or_create_by({
-          first_name: new_first_name,
-          last_name: new_last_name,
-          budget: new_budget,
-          credit_score: new_credit_score,
-          income: new_income,
-          days_searching: 0,
-          active: true,
-          phone_number: new_phone_number,
-          email: new_phone_number
-          })
-        system("clear")
-        puts "Account successfully made made!?"
-        puts "please try logining in with your first name and last name."
-        break
-      else
-        system("clear")
-        puts "information not saved, returning to home screen"
-        break
-      end
+    if answer == "yes"
+      User.find_or_create_by({
+        first_name: new_first_name,
+        last_name: new_last_name,
+        budget: new_budget,
+        credit_score: new_credit_score,
+        income: new_income,
+        days_searching: 0,
+        active: true,
+        phone_number: new_phone_number,
+        email: new_phone_number
+        })
+      system("clear")
+      puts "Account successfully made made!?"
+      puts "please try logining in with your first name and last name."
+    else
+      system("clear")
+      puts "information not saved, returning to home screen"
     end
   elsif starts == "3" || starts == "Public Search"
     leave = false
