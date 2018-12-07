@@ -110,6 +110,9 @@ Appointment.find_or_create_by(
   time: "16:30:22"}
 )
 
+
+
+
 25.times do
   User.create(
     {first_name: Faker::Name.first_name,

@@ -9,7 +9,7 @@ class Property < ActiveRecord::Base
   end
 
   def human_output
-    "Address: #{address}\nAsking Price: $#{separate_comma(cost).green}   Monthly: $#{separate_comma(monthly_cost).green}   Days on Market: #{days_on_market}\nAmenities: #{amenities.light_blue}\nDescription: #{description.light_blue}\n#{"~." * 60}"
+    "\nAddress: #{address}\n\nAsking Price: $#{separate_comma(cost).green}   Monthly: $#{separate_comma(monthly_cost).green}   Days on Market: #{days_on_market}\nAmenities: #{amenities.light_blue}\nDescription: #{description.light_blue}\n#{"~." * 60}"
   end
 
   def self.lowest_price
