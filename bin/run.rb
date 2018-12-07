@@ -96,9 +96,10 @@ until starts == "Quit" || starts == "0"
 
 
         puts "Would you like to save a property?".blue
+        puts "yes | no"
         answer = get_user_input.downcase
         until answer == "yes" || answer == "no"
-          puts"that input is invalid, please enter yes or no.".red
+          puts"that input is invalid, please enter yes | no.".red
           answer = get_user_input.downcase
         end
 
@@ -127,7 +128,7 @@ until starts == "Quit" || starts == "0"
       when "7", "my saves"
         system("clear")
         user.all_my_saves
-        puts "Would you like to remove any saves?"
+        puts "Would you like to remove any saves?\n yes | no"
           save_response = get_user_input
         until save_response == "yes" || save_response == "no"
           puts "Thats invalid input, please try".red
@@ -142,11 +143,11 @@ until starts == "Quit" || starts == "0"
           # check valid
           until Property.where(address: pr_to_delete).map {|pr| pr.address}.include?(pr_to_delete) || pr_to_delete == "quit"
             puts "Input was invalid. You can try again or quit".red
-            pr_to_deletes = get_user_input
+            pr_to_delete = get_user_input
           end
           user.remove_property(pr_to_delete) unless pr_to_delete == "quit"
           #when del run del method on saveed object
-            puts "#{pr_to_delete}, has been deleted from your saved items." unless pr_to_delete == "quit"
+            puts "#{pr_to_delete}, has been deleted from your saved items.".red unless pr_to_delete == "quit"
         end
 
 
@@ -184,7 +185,7 @@ until starts == "Quit" || starts == "0"
     system("clear")
     puts "First Name:   #{new_first_name} \nLast Name:    #{new_last_name} \nBudget:       #{new_budget} \nCredit Score: #{new_credit_score} \nIncome:       #{new_income} \nPhone Number: #{new_phone_number} \nEmail:        #{new_email}"
 
-    puts "Is the above information correct? \nPlease enter Yes or No. \nIf you enter no, all the information will be lost"
+    puts "Is the above information correct? \nPlease enter Yes | No. \nIf you enter no, all the information will be lost"
     answer = get_user_input.downcase
 
     until answer == "yes" || answer == "no"
@@ -205,11 +206,11 @@ until starts == "Quit" || starts == "0"
         email: new_phone_number
         })
       system("clear")
-      puts "Account successfully made made!?"
+      puts "Account successfully made made!?".green
       puts "please try logining in with your first name and last name."
     else
       system("clear")
-      puts "information not saved, returning to home screen"
+      puts "information not saved, returning to home screen".red
     end
   elsif starts == "3" || starts == "Public Search"
     leave = false

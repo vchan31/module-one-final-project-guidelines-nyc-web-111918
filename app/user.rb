@@ -10,8 +10,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def separate_comma(number)
+  number.to_s.chars.reverse.each_slice(3).map(&:join).join(",").reverse
+  end
+
+
   def my_profile
-    "  My Profile\n\n  Name:#{first_name} #{last_name}\n  Email: #{email}\n  Number:#{phone_number}\n  Days Searching #{days_searching}\n  Income: $#{income}\n  Budget: $#{budget}\n  Credit Score #{credit_score}"
+    "  My Profile\n\n  Name:#{first_name} #{last_name}\n  Email: #{email}\n  Number:#{phone_number}\n  Days Searching: #{days_searching}\n  Income: $#{separate_comma(income).green}\n  Budget: $#{separate_comma(budget).green}\n  Credit Score: #{credit_score}"
   end
 
   def edit_my_profile
