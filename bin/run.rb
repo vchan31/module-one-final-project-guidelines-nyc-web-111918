@@ -63,9 +63,10 @@ until starts == "Quit" || starts == "0"
       puts "\n#{"~." * 60}\nPlease select what you would like to do. \n".blue
       puts"note: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
 
-      puts "
-      [1] :highest priced listing   [2] :lowest priced listing    [3] :search by zip            [4] :newest listing\n
-      [5] :most popular             [6] :my appointments          [7] :my saves                 [8] :my info\n
+      puts "\n
+      [1] :highest priced listing   [2] :lowest priced listing    [3] :search by zip\n
+      [4] :newest listing           [5] :most popular             [6] :my appointments\n
+      [7] :my saves                 [8] :my info\n
       [0] :logout\n#{"~." * 60}"
       user_input = get_user_input
 
@@ -87,7 +88,13 @@ until starts == "Quit" || starts == "0"
         end
         system("clear")
         puts "~Here are the listings for #{zip}~\n ".blue
-        puts Property.find_by_zip(zip)
+        properties = Property.where(zip: zip, availibity: true)
+        properties.map do |pr|
+          sleep(0.5)
+          puts pr.human_output
+        end
+
+
         puts "Would you like to save a property?".blue
         answer = get_user_input.downcase
         until answer == "yes" || answer == "no"
@@ -234,7 +241,12 @@ until starts == "Quit" || starts == "0"
         end
         system("clear")
         puts "Here are the listings for #{zip}\n".blue
-        puts Property.find_by_zip(zip)
+        properties = Property.where(zip: zip, availibity: true)
+        properties.map do |pr|
+          sleep(0.5)
+          puts pr.human_output
+        end
+        # puts Property.find_by_zip(zip)
       when "4", "newest listing"
         system("clear")
         puts Property.new_listing

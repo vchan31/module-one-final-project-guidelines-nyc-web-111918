@@ -4,8 +4,12 @@ class Property < ActiveRecord::Base
   has_many :users, through: :appointments
   has_many :users, through: :saves
 
+  def separate_comma(number)
+  number.to_s.chars.reverse.each_slice(3).map(&:join).join(",").reverse
+  end
+
   def human_output
-    "Address: #{address}\nAsking Price: $#{cost}   Monthly: #{monthly_cost}   Days on Market: #{days_on_market}\nAmenities: #{amenities}\nDescription: #{description}\n#{"~." * 60}"
+    "Address: #{address}\nAsking Price: $#{separate_comma(cost).green}   Monthly: $#{separate_comma(monthly_cost).green}   Days on Market: #{days_on_market}\nAmenities: #{amenities.light_blue}\nDescription: #{description.light_blue}\n#{"~." * 60}"
   end
 
   def self.lowest_price
@@ -28,7 +32,6 @@ class Property < ActiveRecord::Base
   def self.find_by_zip(zipcode)
     all_found = self.all.where(zip: zipcode, availibity: true)
     all_found.map do |pr|
-
       pr.human_output
     end
   end

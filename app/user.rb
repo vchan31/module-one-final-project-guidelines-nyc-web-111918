@@ -67,6 +67,7 @@ def save_property(address)
 puts "Your Property has been saved!"
 end
 
+#user.save
 def all_my_saves
   puts "Here are your saved items:"
   saved_properties = Save.all.where(user_id: self.id)
