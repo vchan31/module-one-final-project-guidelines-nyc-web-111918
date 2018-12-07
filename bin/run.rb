@@ -14,17 +14,17 @@ end
 
 
 def logo
-  puts "         .-.                                              .-."
-  puts "        (. .)__.')                                  (`.__(. .)"
-  puts "        / V      )        Blue Jays Listings        (      V \\"
-  puts "  ()    \\  (   \\/                                    \\/   )  /    ()"
-  puts "<)-`\\()  `._`._ \\                                    / _.'_.'  ()/'-(>"
-  puts "  <)_>=====<<==`'====================================`'==>>=====<_(>"
-  puts " <>-'`(>                                                      <)'`-<>"
+  puts "         .-.                                              .-.".blue
+  puts "        (. .)__.')                                  (`.__(. .)".blue
+  puts "        / V      )        Blue Jays Listings        (      V \\".blue
+  puts "  ()    \\  (   \\/                                    \\/   )  /    ()".blue
+  puts "<)-`\\()  `._`._ \\                                    / _.'_.'  ()/'-(>".blue
+  puts "  <)_>=====<<==`'====================================`'==>>=====<_(>".blue
+  puts " <>-'`(>                                                      <)'`-<>".blue
   puts ""
 end
 
-puts "#{" " * 44}~Blue Jays Listings~"
+# puts "#{" " * 44}~Blue Jays Listings~"
 
 #press enter to quit out of current method
 system("clear")
@@ -34,7 +34,7 @@ starts = nil
 until starts == "Quit" || starts == "0"
   logo
   quit = nil
-  puts "Welcome to Blue Jays Listings"
+  puts "Welcome to Blue Jays Listings".blue
   puts "Would would you like to do? \n
       [1] : User Login \n
       [2] : Make New User Account\n
@@ -49,17 +49,19 @@ until starts == "Quit" || starts == "0"
     first_name = get_user_input.capitalize
     puts "Please enter your last name"
     last_name = get_user_input.capitalize
+    system("clear")
     user = User.find_by(first_name: first_name, last_name: last_name)
     if user.nil?
       system("clear")
-      puts "Invalid name, please go make an account with us or browse the Public Search 😀\n"
+      puts "Invalid name, please go make an account with us or browse the Public Search 😀\n".red
       next
     end
 
 
     puts "Welcome back #{first_name.capitalize} #{last_name.capitalize}"
     until quit
-      puts "\n#{"~." * 60}\nPlease select what you would like to do. \nnote: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
+      puts "\n#{"~." * 60}\nPlease select what you would like to do. \n".blue
+      puts"note: all searches apply to Manhattan properties only\nPlease key-in one of the following of options by number"
 
       puts "
       [1] :highest priced listing   [2] :lowest priced listing    [3] :search by zip            [4] :newest listing\n
@@ -77,27 +79,28 @@ until starts == "Quit" || starts == "0"
       when "3", "search by zip"
         system("clear")
         puts "please enter a zip code"
-        zip = get_user_input.to_i
-        until valid_zip?(zip)
+        zip = get_user_input
+        until valid_zip?(zip.to_i)
+          system("clear")
           puts "#{zip} is not a valid input\nplease put in a valid Manhattan zip.\ne.g. 10011"
-          zip = get_user_input.to_i
+          zip = get_user_input
         end
         system("clear")
-        puts "~Here are the listings for #{zip}~\n "
+        puts "~Here are the listings for #{zip}~\n ".blue
         puts Property.find_by_zip(zip)
-        puts "Would you like to save a property?"
+        puts "Would you like to save a property?".blue
         answer = get_user_input.downcase
         until answer == "yes" || answer == "no"
-          puts"that input is invalid, please enter yes or no."
+          puts"that input is invalid, please enter yes or no.".red
           answer = get_user_input.downcase
         end
 
         if answer == "yes"
-          puts "Please enter the address with apt numer exactly as shown. you would like to save."
+          puts "Please enter the address with apt numer exactly as shown. you would like to save.".blue
           address = get_user_input
 
           until Property.where(zip: zip).map {|pr| pr.address}.include?(address) || address == "quit"
-            puts "Input was invalid. You can try again or quit"
+            puts "Input was invalid. You can try again or quit".red
             address = get_user_input
           end
           user.save_property(address) unless address == "quit"
@@ -111,7 +114,7 @@ until starts == "Quit" || starts == "0"
         system("clear")
         puts Appointment.most_popular
       when "6", "my appointments"
-          puts "Here are your saved appointments:"
+          puts "Here are your saved appointments:".blue
         system("clear")
         puts user.my_appointments
       when "7", "my saves"
@@ -120,7 +123,7 @@ until starts == "Quit" || starts == "0"
         puts "Would you like to remove any saves?"
           save_response = get_user_input
         until save_response == "yes" || save_response == "no"
-          puts "Thats invalid input, please try"
+          puts "Thats invalid input, please try".red
           save_response = get_user_input
         end
 
@@ -131,7 +134,7 @@ until starts == "Quit" || starts == "0"
           # gets chomp
           # check valid
           until Property.where(address: pr_to_delete).map {|pr| pr.address}.include?(pr_to_delete) || pr_to_delete == "quit"
-            puts "Input was invalid. You can try again or quit"
+            puts "Input was invalid. You can try again or quit".red
             pr_to_deletes = get_user_input
           end
           user.remove_property(pr_to_delete) unless pr_to_delete == "quit"
@@ -149,7 +152,7 @@ until starts == "Quit" || starts == "0"
         system("clear")
       else
         system("clear")
-        puts "#{user_input} is not a valid input \nTry again"
+        puts "#{user_input} is not a valid input \nTry again".red
       end
 
     end # end of user search
@@ -178,7 +181,7 @@ until starts == "Quit" || starts == "0"
     answer = get_user_input.downcase
 
     until answer == "yes" || answer == "no"
-      puts "Thats invalid input, please try"
+      puts "Thats invalid input, please try".red
       answer = get_user_input.downcase
     end
 
@@ -223,13 +226,14 @@ until starts == "Quit" || starts == "0"
       when "3", "search by zip"
         system("clear")
         puts "please enter a zip code"
-        zip = get_user_input.to_i
-        until valid_zip?(zip)
-          puts "#{zip} is not a valid input\nplease put in a valid Manhattan zip.\ne.g. 10011"
-          zip = get_user_input.to_i
+        zip = get_user_input
+        until valid_zip?(zip.to_i)
+          system("clear")
+          puts "#{zip} is not a valid input\nplease put in a valid Manhattan zip.\ne.g. 10011".red
+          zip = get_user_input
         end
         system("clear")
-        puts "Here are the listings for #{zip}\n"
+        puts "Here are the listings for #{zip}\n".blue
         puts Property.find_by_zip(zip)
       when "4", "newest listing"
         system("clear")
@@ -242,20 +246,20 @@ until starts == "Quit" || starts == "0"
         system("clear")
       else
         system("clear")
-        puts "#{user_input} is not a valid input \nTry again"
+        puts "#{user_input} is not a valid input \nTry again".red
       end
     end # end of public search
   elsif starts == "0" || starts == "Quit"
     break
   else#where there is an invalid input at Start menu
     system("clear")
-    puts "##{starts} is not a valid input"
-    puts "Invalid inputs, please try again.\n\n"
+    puts "##{starts} is not a valid input".red
+    puts "Invalid inputs, please try again.\n\n".red
 
   end #end of what would you like to do loop
 end #end of CLI program
 
 logo
 puts "Thanks for using our program! courtsey of Tony J. and Vincent J."
-puts "#{" " * 44}~Blue Jays Listings~\n\n"
+puts "#{" " * 44}~Blue Jays Listings~\n\n".blue
 footer
