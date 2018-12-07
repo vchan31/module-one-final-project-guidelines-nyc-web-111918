@@ -111,6 +111,7 @@ until starts == "Quit" || starts == "0"
             puts "Input was invalid. You can try again or quit".red
             address = get_user_input
           end
+          system("clear") if address == "quit"
           user.save_property(address) unless address == "quit"
         else answer == "no"
           system("clear")
